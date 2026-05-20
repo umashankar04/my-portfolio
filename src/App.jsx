@@ -139,63 +139,53 @@ const sectionMotion = {
   initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.55, ease: "easeOut" },
+  transition: { duration: 0.7, ease: "easeInOut" },
 };
 
 const heroOrbits = [
   {
     className:
-      "-right-6 top-14 h-24 w-24 bg-cyan-400/30 blur-3xl dark:bg-cyan-300/20",
-    duration: 16,
+      "-right-6 top-8 h-12 w-12 bg-cyan-400/18 blur-3xl sm:-right-8 sm:top-12 sm:h-16 sm:w-16 md:-right-10 md:top-16 md:h-20 md:w-20 dark:bg-cyan-300/12",
+    duration: 22,
     delay: 0,
   },
   {
     className:
-      "left-8 top-28 h-16 w-16 bg-blue-500/30 blur-2xl dark:bg-blue-300/15",
-    duration: 13,
-    delay: 1.5,
-  },
-  {
-    className:
-      "bottom-10 right-24 h-20 w-20 bg-indigo-400/25 blur-3xl dark:bg-indigo-300/15",
-    duration: 18,
-    delay: 0.8,
+      "left-6 bottom-10 h-10 w-10 bg-blue-500/18 blur-2xl sm:left-8 sm:bottom-14 sm:h-12 sm:w-12 md:left-10 md:bottom-16 md:h-14 md:w-14 dark:bg-blue-300/10",
+    duration: 24,
+    delay: 1.2,
   },
 ];
 
 const floatingCards = [
   {
     label: "AI & ML",
-    className: "left-4 top-4 sm:left-8 sm:top-10",
-    duration: 7.5,
+    className:
+      "left-2 top-3 sm:left-6 sm:top-6 md:left-8 md:top-8 lg:left-10 lg:top-12",
+    duration: 0,
     delay: 0,
   },
   {
     label: "Gen AI",
-    className: "right-4 top-20 sm:right-12 sm:top-16",
-    duration: 8.5,
+    className:
+      "right-2 top-14 sm:right-6 sm:top-16 md:right-8 md:top-20 lg:right-14 lg:top-18",
+    duration: 0,
     delay: 1.2,
-  },
-  {
-    label: "Python",
-    className: "bottom-8 left-10 sm:left-20 sm:bottom-10",
-    duration: 9.2,
-    delay: 0.6,
   },
 ];
 
 const heroRings = [
   {
     className:
-      "left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2",
-    duration: 24,
+      "left-1/2 top-1/2 h-[20rem] w-[20rem] -translate-x-1/2 -translate-y-1/2 sm:h-[28rem] sm:w-[28rem] md:h-[32rem] md:w-[32rem]",
+    duration: 28,
     delay: 0,
   },
   {
     className:
-      "left-1/2 top-1/2 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2",
-    duration: 18,
-    delay: 1.2,
+      "left-1/2 top-1/2 h-[16rem] w-[16rem] -translate-x-1/2 -translate-y-1/2 sm:h-[20rem] sm:w-[20rem] md:h-[24rem] md:w-[24rem]",
+    duration: 32,
+    delay: 1.4,
   },
 ];
 
@@ -210,6 +200,7 @@ function App() {
       ? "dark"
       : "light";
   });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
@@ -231,14 +222,14 @@ function App() {
   return (
     <div className="bg-orbit min-h-screen">
       <header className="sticky top-0 z-40 border-b border-slate-300/70 bg-white/75 backdrop-blur-lg dark:border-slate-700/60 dark:bg-slate-950/65">
-        <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-3 py-2 sm:px-6 sm:py-3 lg:px-8">
           <a
             href="#hero"
-            className="font-semibold tracking-tight text-slate-900 dark:text-slate-100"
+            className="font-semibold tracking-tight text-slate-900 dark:text-slate-100 text-sm sm:text-base"
           >
             Umashankar Pradhan
           </a>
-          <div className="hidden items-center gap-6 text-sm font-medium text-slate-700 dark:text-slate-200 md:flex">
+          <div className="hidden items-center gap-4 text-xs font-medium text-slate-700 dark:text-slate-200 sm:gap-6 sm:text-sm md:flex">
             <a
               href="#about"
               className="hover:text-blue-600 dark:hover:text-blue-300"
@@ -264,23 +255,79 @@ function App() {
               Contact
             </a>
           </div>
-          <button
-            type="button"
-            aria-label="Toggle dark mode"
-            onClick={() =>
-              setTheme((prev) => (prev === "dark" ? "light" : "dark"))
-            }
-            className="ring-fancy rounded-full border border-slate-200 bg-white p-2 text-slate-700 transition hover:-translate-y-0.5 hover:text-blue-700 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
-          >
-            {theme === "dark" ? <FaSun /> : <FaMoon />}
-          </button>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              aria-label="Toggle mobile menu"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-slate-700 dark:text-slate-100"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle dark mode"
+              onClick={() =>
+                setTheme((prev) => (prev === "dark" ? "light" : "dark"))
+              }
+              className="ring-fancy rounded-full border border-slate-200 bg-white p-2 text-slate-700 transition hover:-translate-y-0.5 hover:text-blue-700 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
+            >
+              {theme === "dark" ? <FaSun /> : <FaMoon />}
+            </button>
+          </div>
         </nav>
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-slate-200 dark:border-slate-700 bg-white/75 dark:bg-slate-950/65 backdrop-blur-lg">
+            <div className="mx-auto max-w-6xl px-3 py-2 space-y-1 sm:px-6">
+              <a
+                href="#about"
+                className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a
+                href="#skills"
+                className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Skills
+              </a>
+              <a
+                href="#projects"
+                className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Projects
+              </a>
+              <a
+                href="#contact"
+                className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-300"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
-      <main className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-6xl px-3 py-8 sm:px-6 sm:py-12 md:px-8 lg:py-16">
         <section
           id="hero"
-          className="surface-card ring-fancy antigravity-shell relative overflow-hidden rounded-3xl px-6 py-14 sm:px-10 lg:px-14"
+          className="surface-card ring-fancy antigravity-shell relative overflow-hidden rounded-2xl px-4 py-10 sm:rounded-3xl sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-14"
         >
           <div className="hero-scanner absolute inset-0 z-0 pointer-events-none" />
           <div className="antigravity-grid absolute inset-0 z-0 pointer-events-none" />
@@ -294,8 +341,8 @@ function App() {
                 prefersReducedMotion
                   ? undefined
                   : {
-                      scale: [1, 1.05, 1],
-                      opacity: [0.3, 0.45, 0.3],
+                      scale: [1, 1.03, 1],
+                      opacity: [0.22, 0.32, 0.22],
                     }
               }
               transition={
@@ -319,9 +366,9 @@ function App() {
                 prefersReducedMotion
                   ? undefined
                   : {
-                      y: [0, -18, 0],
-                      x: index % 2 === 0 ? [0, 10, 0] : [0, -8, 0],
-                      scale: [1, 1.08, 1],
+                      y: [0, -10, 0],
+                      x: index % 2 === 0 ? [0, 6, 0] : [0, -5, 0],
+                      scale: [1, 1.03, 1],
                     }
               }
               transition={
@@ -341,7 +388,7 @@ function App() {
               <div
                 key={card.label}
                 aria-hidden="true"
-                className={`antigravity-chip absolute z-20 border-cyan-300/50 bg-cyan-400/20 text-cyan-50 shadow-[0_20px_48px_-28px_rgba(34,211,238,0.85)] ${card.className}`}
+                className={`antigravity-chip absolute z-20 border-cyan-300/35 bg-cyan-400/16 text-cyan-50 shadow-[0_14px_32px_-22px_rgba(34,211,238,0.6)] ${card.className}`}
               >
                 {card.label}
               </div>
@@ -349,7 +396,7 @@ function App() {
               <motion.div
                 key={card.label}
                 aria-hidden="true"
-                className={`antigravity-chip absolute z-0 ${card.className}`}
+                className={`antigravity-chip absolute z-20 border-white/12 bg-white/8 text-slate-50 ${card.className}`}
                 animate={
                   prefersReducedMotion
                     ? undefined
@@ -376,39 +423,39 @@ function App() {
           <div className="absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-cyan-400/5 blur-3xl pointer-events-none" />
           <div className="absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
           <div className="antigravity-float absolute inset-x-0 bottom-0 z-0 h-16 pointer-events-none" />
-          <div className="hero-panel relative z-10 max-w-4xl rounded-[2rem] border border-white/15 bg-slate-950/72 p-6 shadow-[0_24px_80px_-46px_rgba(11,95,255,0.55)] backdrop-blur-2xl sm:p-8 lg:p-10">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-cyan-300">
+          <div className="hero-panel relative z-10 max-w-4xl rounded-2xl border border-white/15 bg-slate-950/72 p-4 shadow-[0_24px_80px_-46px_rgba(11,95,255,0.55)] backdrop-blur-2xl sm:rounded-3xl sm:p-6 md:p-8 lg:p-10">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300 sm:mb-3">
               Computer Science (AI & ML) Graduate
             </p>
-            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-3xl text-2xl font-extrabold leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
               Umashankar Pradhan
             </h1>
-            <p className="mt-4 text-lg font-semibold text-cyan-300">
+            <p className="mt-2 text-sm font-semibold text-cyan-300 sm:mt-3 sm:text-base md:text-lg">
               Analyst - Gen AI / Python | AI & ML Engineer
             </p>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+            <p className="mt-3 max-w-3xl text-xs leading-relaxed text-slate-300 sm:mt-4 sm:text-sm md:text-base lg:text-lg">
               Building intelligent systems using AI, Machine Learning, and
               Generative AI.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3 md:mt-8">
               <button
                 type="button"
                 onClick={() => scrollTo("projects")}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_18px_36px_-20px_rgba(37,99,235,0.9)]"
+                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_18px_36px_-20px_rgba(37,99,235,0.9)] sm:px-5 sm:py-3 sm:text-sm md:text-base"
               >
                 View Projects <FaArrowRight />
               </button>
               <a
                 href="/Umashankar_Pradhan_Resume.txt"
                 download
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/60 hover:bg-white/12 hover:shadow-[0_18px_36px_-24px_rgba(20,184,166,0.8)]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-xs font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/60 hover:bg-white/12 hover:shadow-[0_18px_36px_-24px_rgba(20,184,166,0.8)] sm:px-5 sm:py-3 sm:text-sm md:text-base"
               >
                 Download Resume <FaDownload />
               </a>
               <button
                 type="button"
                 onClick={() => scrollTo("contact")}
-                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-400/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-400/16 hover:shadow-[0_18px_36px_-24px_rgba(34,211,238,0.75)]"
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-400/10 px-4 py-2 text-xs font-semibold text-cyan-100 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-400/16 hover:shadow-[0_18px_36px_-24px_rgba(34,211,238,0.75)] sm:px-5 sm:py-3 sm:text-sm md:text-base"
               >
                 Contact Me
               </button>
@@ -416,11 +463,15 @@ function App() {
           </div>
         </section>
 
-        <motion.section id="about" {...sectionMotion} className="pt-16">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+        <motion.section
+          id="about"
+          {...sectionMotion}
+          className="pt-12 sm:pt-16 md:pt-20"
+        >
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
             About Me
           </h2>
-          <p className="surface-card mt-5 rounded-2xl p-6 text-base leading-relaxed text-slate-700 dark:text-slate-300">
+          <p className="surface-card mt-5 rounded-2xl p-4 text-xs leading-relaxed text-slate-700 dark:text-slate-300 sm:p-5 sm:text-sm md:p-6 md:text-base">
             Motivated Computer Science (AI & ML) graduate with hands-on
             experience in Python, Machine Learning, and full-stack development.
             Proficient in building and evaluating ML models using Scikit-learn,
@@ -433,8 +484,12 @@ function App() {
           </p>
         </motion.section>
 
-        <motion.section id="education" {...sectionMotion} className="pt-16">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+        <motion.section
+          id="education"
+          {...sectionMotion}
+          className="pt-12 sm:pt-16 md:pt-20"
+        >
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
             Education
           </h2>
           <div className="mt-5 grid gap-4">
@@ -466,11 +521,15 @@ function App() {
           </div>
         </motion.section>
 
-        <motion.section id="skills" {...sectionMotion} className="pt-16">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+        <motion.section
+          id="skills"
+          {...sectionMotion}
+          className="pt-12 sm:pt-16 md:pt-20"
+        >
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
             Skills
           </h2>
-          <div className="mt-6 grid gap-5 md:grid-cols-2">
+          <div className="mt-5 grid gap-4 sm:mt-6 sm:gap-5 md:grid-cols-2">
             {skillGroups.map((group) => (
               <motion.article
                 key={group.title}
@@ -498,9 +557,13 @@ function App() {
           </div>
         </motion.section>
 
-        <motion.section id="projects" {...sectionMotion} className="pt-16">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+        <motion.section
+          id="projects"
+          {...sectionMotion}
+          className="pt-12 sm:pt-16 md:pt-20"
+        >
+          <div className="flex flex-col gap-4 sm:flex-wrap sm:items-center sm:justify-between">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
               Projects
             </h2>
             <div className="flex flex-wrap items-center gap-2">
@@ -571,8 +634,12 @@ function App() {
           </div>
         </motion.section>
 
-        <motion.section id="experience" {...sectionMotion} className="pt-16">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+        <motion.section
+          id="experience"
+          {...sectionMotion}
+          className="pt-12 sm:pt-16 md:pt-20"
+        >
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
             Experience
           </h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -607,11 +674,15 @@ function App() {
           </div>
         </motion.section>
 
-        <motion.section id="additional" {...sectionMotion} className="pt-16">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+        <motion.section
+          id="additional"
+          {...sectionMotion}
+          className="pt-12 sm:pt-16 md:pt-20"
+        >
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
             Additional Information
           </h2>
-          <div className="surface-card mt-5 rounded-2xl p-6 text-slate-700 dark:text-slate-300">
+          <div className="surface-card mt-5 rounded-2xl p-4 text-xs text-slate-700 dark:text-slate-300 sm:p-5 sm:text-sm md:p-6 md:text-base">
             <p className="text-base leading-relaxed">
               <span className="font-semibold text-slate-900 dark:text-white">
                 Interests:
@@ -628,16 +699,20 @@ function App() {
           </div>
         </motion.section>
 
-        <motion.section id="contact" {...sectionMotion} className="pt-16">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+        <motion.section
+          id="contact"
+          {...sectionMotion}
+          className="pt-12 sm:pt-16 md:pt-20"
+        >
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl md:text-4xl">
             Contact
           </h2>
-          <div className="mt-6 grid gap-5 lg:grid-cols-2">
-            <article className="surface-card rounded-2xl p-6">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+          <div className="mt-6 grid gap-4 sm:gap-5 md:gap-6 lg:grid-cols-2">
+            <article className="surface-card rounded-2xl p-4 sm:p-5 md:p-6">
+              <h3 className="text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
                 Let's Connect
               </h3>
-              <div className="mt-4 space-y-3 text-sm text-slate-700 dark:text-slate-300">
+              <div className="mt-3 space-y-2 text-xs text-slate-700 dark:text-slate-300 sm:mt-4 sm:space-y-3 sm:text-sm">
                 <a
                   className="flex items-center gap-3 hover:text-blue-700 dark:hover:text-blue-300"
                   href="mailto:umashankarpradhan138@gmail.com"
@@ -669,12 +744,12 @@ function App() {
               </div>
             </article>
             <form
-              className="surface-card space-y-3 rounded-2xl p-6"
+              className="surface-card space-y-2 rounded-2xl p-4 sm:space-y-3 sm:p-5 md:p-6"
               action="https://formspree.io/f/your-form-id"
               method="POST"
             >
               <label
-                className="block text-sm font-medium text-slate-700 dark:text-slate-200"
+                className="block text-xs font-medium text-slate-700 dark:text-slate-200 sm:text-sm"
                 htmlFor="name"
               >
                 Name
@@ -683,10 +758,10 @@ function App() {
                 id="name"
                 name="name"
                 required
-                className="w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                className="w-full rounded-lg border border-slate-300 bg-white p-2 text-xs text-slate-900 outline-none transition focus:border-blue-500 sm:p-2.5 sm:text-sm dark:border-slate-600 dark:bg-slate-900 dark:text-white"
               />
               <label
-                className="block text-sm font-medium text-slate-700 dark:text-slate-200"
+                className="block text-xs font-medium text-slate-700 dark:text-slate-200 sm:text-sm"
                 htmlFor="email"
               >
                 Email
@@ -696,10 +771,10 @@ function App() {
                 name="email"
                 type="email"
                 required
-                className="w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                className="w-full rounded-lg border border-slate-300 bg-white p-2 text-xs text-slate-900 outline-none transition focus:border-blue-500 sm:p-2.5 sm:text-sm dark:border-slate-600 dark:bg-slate-900 dark:text-white"
               />
               <label
-                className="block text-sm font-medium text-slate-700 dark:text-slate-200"
+                className="block text-xs font-medium text-slate-700 dark:text-slate-200 sm:text-sm"
                 htmlFor="message"
               >
                 Message
@@ -708,12 +783,12 @@ function App() {
                 id="message"
                 name="message"
                 required
-                rows="4"
-                className="w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                rows="3"
+                className="w-full rounded-lg border border-slate-300 bg-white p-2 text-xs text-slate-900 outline-none transition focus:border-blue-500 sm:p-2.5 sm:text-sm sm:rows-4 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
               />
               <button
                 type="submit"
-                className="mt-2 inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                className="mt-2 inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700 sm:px-5 sm:py-2.5 sm:text-sm"
               >
                 Send Message <FaArrowRight />
               </button>
@@ -722,7 +797,7 @@ function App() {
         </motion.section>
       </main>
 
-      <footer className="mx-auto w-full max-w-6xl px-4 pb-10 pt-8 text-center text-sm text-slate-600 sm:px-6 lg:px-8 dark:text-slate-300">
+      <footer className="mx-auto w-full max-w-6xl px-3 pb-8 pt-8 text-center text-xs text-slate-600 sm:px-6 sm:pb-10 sm:text-sm md:px-8 dark:text-slate-300">
         <p>
           © {new Date().getFullYear()} Umashankar Pradhan. Built with React,
           Tailwind CSS, and Framer Motion.
