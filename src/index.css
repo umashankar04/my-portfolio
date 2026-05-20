@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4f7fb;
+  --bg-elev: #ffffff;
+  --text: #0f172a;
+  --muted: #4b5563;
+  --stroke: #dbe4f1;
+  --primary: #0b5fff;
+  --secondary: #14b8a6;
+}
+
+.dark {
+  --bg: #0b1220;
+  --bg-elev: #111b31;
+  --text: #f8fafc;
+  --muted: #b8c4da;
+  --stroke: #223354;
+  --primary: #4f8bff;
+  --secondary: #2dd4bf;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "IBM Plex Sans", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Sora", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.surface-card {
+  background: color-mix(in srgb, var(--bg-elev) 92%, transparent);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(8px);
+}
+
+.bg-orbit {
+  background-image:
+    radial-gradient(circle at 10% 20%, rgb(20 184 166 / 0.25), transparent 32%),
+    radial-gradient(circle at 90% 0%, rgb(11 95 255 / 0.22), transparent 28%),
+    radial-gradient(circle at 70% 80%, rgb(59 130 246 / 0.2), transparent 40%);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.ring-fancy {
+  box-shadow:
+    0 0 0 1px var(--stroke),
+    0 20px 40px -26px rgb(11 95 255 / 0.55);
+}
