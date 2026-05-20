@@ -71,3 +71,81 @@ h4 {
     0 0 0 1px var(--stroke),
     0 20px 40px -26px rgb(11 95 255 / 0.55);
 }
+
+.antigravity-shell {
+  transform-style: preserve-3d;
+  perspective: 1400px;
+}
+
+.antigravity-grid {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.05), transparent 35%),
+    linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: auto, 36px 36px, 36px 36px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 78%);
+  opacity: 0.24;
+}
+
+.antigravity-vignette {
+  background:
+    radial-gradient(circle at center, transparent 0 48%, rgb(5 15 30 / 0.04) 72%, rgb(5 15 30 / 0.1) 100%),
+    linear-gradient(135deg, rgb(255 255 255 / 0.08), transparent 45%);
+  mix-blend-mode: soft-light;
+}
+
+.antigravity-orb {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 0 60px rgb(34 211 238 / 0.12),
+    0 0 120px rgb(59 130 246 / 0.05);
+}
+
+.antigravity-chip {
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 9999px;
+  padding: 0.5rem 0.9rem;
+  background: rgb(255 255 255 / 0.1);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 18px 44px -28px rgb(11 95 255 / 0.7),
+    inset 0 1px 0 rgb(255 255 255 / 0.28);
+}
+
+.antigravity-float {
+  background: linear-gradient(180deg, transparent, rgb(255 255 255 / 0.12), transparent);
+  filter: blur(1px);
+  animation: float-wave 9s ease-in-out infinite;
+}
+
+.antigravity-card {
+  transform: translateZ(0);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.antigravity-card:hover {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--stroke) 80%, transparent),
+    0 28px 56px -34px rgb(11 95 255 / 0.5);
+}
+
+@keyframes float-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translateY(-10px);
+    opacity: 0.95;
+  }
+}

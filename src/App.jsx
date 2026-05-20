@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   FaArrowRight,
   FaCode,
@@ -20,8 +20,7 @@ const projects = [
       "Developed predictive models using Logistic Regression, Random Forest, and XGBoost to assess heart disease risk with end-to-end ML evaluation.",
     stack: ["Python", "Scikit-learn", "Pandas", "Matplotlib", "XGBoost"],
     tags: ["ai-ml"],
-    github:
-      "https://github.com/umashankar04/heart-disease-prediction-ml",
+    github: "https://github.com/umashankar04/heart-disease-prediction-ml",
   },
   {
     title: "Diabetes Prediction - Retinopathy & Readmission Analysis",
@@ -29,8 +28,7 @@ const projects = [
       "Built healthcare-focused ML workflows with data cleaning, feature engineering, and model evaluation for predictive analytics.",
     stack: ["Python", "Scikit-learn", "Pandas"],
     tags: ["ai-ml"],
-    github:
-      "https://github.com/umashankar04/diabetes-prediction-analysis",
+    github: "https://github.com/umashankar04/diabetes-prediction-analysis",
   },
   {
     title: "Employee Management System (EMS) - Full Stack with AI Chatbot",
@@ -89,6 +87,14 @@ const skillGroups = [
 
 const experiences = [
   {
+    role: "BPO Associate",
+    company: "Tech Mahindra",
+    period: "Apr 2026 - Present",
+    points: [
+      "Currently working in BPO operations at Tech Mahindra since April 2026.",
+    ],
+  },
+  {
     role: "Software Development Intern",
     company: "Accrosian Soft Solution Pvt. Ltd., Bhubaneswar",
     period: "Dec 2025 - Mar 2026",
@@ -113,7 +119,7 @@ const education = [
     degree: "B.Tech - Computer Science (AI & ML)",
     institute: "C.V. Raman Global University, Bhubaneswar",
     period: "2022 - 2026",
-    score: "CGPA: 7.79",
+    score: "CGPA: 7.98",
   },
   {
     degree: "Class X (CBSE)",
@@ -136,7 +142,50 @@ const sectionMotion = {
   transition: { duration: 0.55, ease: "easeOut" },
 };
 
+const heroOrbits = [
+  {
+    className:
+      "-right-6 top-14 h-24 w-24 bg-cyan-400/30 blur-3xl dark:bg-cyan-300/20",
+    duration: 16,
+    delay: 0,
+  },
+  {
+    className:
+      "left-8 top-28 h-16 w-16 bg-blue-500/30 blur-2xl dark:bg-blue-300/15",
+    duration: 13,
+    delay: 1.5,
+  },
+  {
+    className:
+      "bottom-10 right-24 h-20 w-20 bg-indigo-400/25 blur-3xl dark:bg-indigo-300/15",
+    duration: 18,
+    delay: 0.8,
+  },
+];
+
+const floatingCards = [
+  {
+    label: "AI & ML",
+    className: "left-4 top-4 sm:left-8 sm:top-10",
+    duration: 7.5,
+    delay: 0,
+  },
+  {
+    label: "Gen AI",
+    className: "right-4 top-20 sm:right-12 sm:top-16",
+    duration: 8.5,
+    delay: 1.2,
+  },
+  {
+    label: "Python",
+    className: "bottom-8 left-10 sm:left-20 sm:bottom-10",
+    duration: 9.2,
+    delay: 0.6,
+  },
+];
+
 function App() {
+  const prefersReducedMotion = useReducedMotion();
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "light" || saved === "dark") {
@@ -217,12 +266,88 @@ function App() {
         <motion.section
           id="hero"
           initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="surface-card ring-fancy relative overflow-hidden rounded-3xl px-6 py-14 sm:px-10 lg:px-14"
+          animate={{
+            opacity: 1,
+            y: 0,
+            boxShadow: prefersReducedMotion
+              ? undefined
+              : [
+                  "0 24px 80px -48px rgb(11 95 255 / 0.18)",
+                  "0 28px 96px -44px rgb(20 184 166 / 0.24)",
+                  "0 24px 80px -48px rgb(11 95 255 / 0.18)",
+                ],
+          }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0.35 }
+              : {
+                  duration: 8,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                }
+          }
+          className="surface-card ring-fancy antigravity-shell relative overflow-hidden rounded-3xl px-6 py-14 sm:px-10 lg:px-14"
         >
-          <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-cyan-400/25 blur-3xl" />
-          <div className="absolute -bottom-20 left-12 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
+          <div className="antigravity-grid absolute inset-0 z-0 pointer-events-none" />
+          <div className="antigravity-vignette absolute inset-0 z-0 pointer-events-none" />
+          {heroOrbits.map((orb, index) => (
+            <motion.div
+              key={orb.className}
+              aria-hidden="true"
+              className={`antigravity-orb absolute z-0 rounded-full ${orb.className}`}
+              animate={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      y: [0, -18, 0],
+                      x: index % 2 === 0 ? [0, 10, 0] : [0, -8, 0],
+                      scale: [1, 1.08, 1],
+                    }
+              }
+              transition={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      duration: orb.duration,
+                      delay: orb.delay,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }
+              }
+            />
+          ))}
+          {floatingCards.map((card, index) => (
+            <motion.div
+              key={card.label}
+              aria-hidden="true"
+              className={`antigravity-chip absolute z-0 ${card.className}`}
+              animate={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      y: [0, -14, 0],
+                      rotate: index % 2 === 0 ? [-2, 2, -2] : [2, -2, 2],
+                    }
+              }
+              transition={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      duration: card.duration,
+                      delay: card.delay,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }
+              }
+            >
+              {card.label}
+            </motion.div>
+          ))}
+          <div className="absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-cyan-400/6 blur-3xl pointer-events-none" />
+          <div className="absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-blue-500/6 blur-3xl pointer-events-none" />
+          <div className="antigravity-float absolute inset-x-0 bottom-0 z-0 h-16 pointer-events-none" />
+          <div className="relative z-10">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300">
             Computer Science (AI & ML) Graduate
           </p>
@@ -259,6 +384,7 @@ function App() {
               Contact Me
             </button>
           </div>
+          </div>
         </motion.section>
 
         <motion.section id="about" {...sectionMotion} className="pt-16">
@@ -284,7 +410,12 @@ function App() {
           </h2>
           <div className="mt-5 grid gap-4">
             {education.map((item) => (
-              <article key={item.degree} className="surface-card rounded-2xl p-6">
+              <motion.article
+                key={item.degree}
+                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="surface-card antigravity-card rounded-2xl p-6"
+              >
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   {item.degree}
                 </h3>
@@ -299,7 +430,7 @@ function App() {
                     {item.score}
                   </span>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </motion.section>
@@ -310,9 +441,11 @@ function App() {
           </h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {skillGroups.map((group) => (
-              <article
+              <motion.article
                 key={group.title}
-                className="surface-card rounded-2xl p-5"
+                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="surface-card antigravity-card rounded-2xl p-5"
               >
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
                   {group.title}
@@ -327,7 +460,7 @@ function App() {
                     </li>
                   ))}
                 </ul>
-              </article>
+              </motion.article>
             ))}
           </div>
         </motion.section>
@@ -363,9 +496,10 @@ function App() {
                 key={project.title}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={prefersReducedMotion ? undefined : { y: -10, rotateX: 1, rotateY: -1 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.45, delay: index * 0.1 }}
-                className="surface-card rounded-2xl p-5"
+                className="surface-card antigravity-card rounded-2xl p-5"
               >
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   {project.title}
@@ -402,7 +536,12 @@ function App() {
           </h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {experiences.map((exp) => (
-              <article key={exp.role} className="surface-card rounded-2xl p-6">
+              <motion.article
+                key={exp.role}
+                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="surface-card antigravity-card rounded-2xl p-6"
+              >
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
                   {exp.role}
                 </h3>
@@ -420,7 +559,7 @@ function App() {
                     </li>
                   ))}
                 </ul>
-              </article>
+              </motion.article>
             ))}
           </div>
         </motion.section>
@@ -441,7 +580,7 @@ function App() {
               <span className="font-semibold text-slate-900 dark:text-white">
                 Location Preference:
               </span>{" "}
-              Open to relocate to Noida (Onsite)
+              Open to relocate (Onsite)
             </p>
           </div>
         </motion.section>
