@@ -1,0 +1,56 @@
+UMASHANKAR PRADHAN
+Analyst - Gen AI / Python | AI & ML Engineer
+
+Email: umashankarpradhan138@gmail.com
+Phone: +91-9668797558
+LinkedIn: https://linkedin.com/in/umashankar-pradhan-a72903253
+GitHub: https://github.com/umashankar04
+
+PROFESSIONAL SUMMARY
+Motivated Computer Science (AI & ML) graduate with hands-on experience in Python, Machine Learning, and full-stack development.
+Proficient in building and evaluating ML models using Scikit-learn, Pandas, and NumPy. Familiar with Generative AI concepts,
+LLMs, prompt engineering, and NLP workflows. Experienced in developing RESTful APIs with FastAPI and integrating AI-driven
+features including chatbot support. Strong analytical mindset with a passion for applying emerging AI and Gen AI technologies
+to real-world business problems.
+
+TECHNICAL SKILLS
+AI / ML / Gen AI: Python, Scikit-learn, XGBoost, Random Forest, Logistic Regression, NLP, Prompt Engineering,
+LLMs (OpenAI / Hugging Face), Transformers, Embeddings
+Data & ML Libraries: NumPy, Pandas, Matplotlib, Hyperparameter Tuning, Feature Engineering, Model Evaluation
+Development: FastAPI, React, REST APIs, JWT Authentication, Role-Based Access Control, MySQL
+Tools & Platforms: Git, GitHub, VS Code, MySQL Workbench
+
+EXPERIENCE
+Software Development Intern | Accrosian Soft Solution Pvt. Ltd., Bhubaneswar | Dec 2025 - Mar 2026
+- Developed and maintained Python-based backend services and RESTful APIs to support AI-driven application features.
+- Contributed to building NLP-integrated chatbot functionalities and automated data processing pipelines.
+- Collaborated with cross-functional teams to translate business requirements into scalable technical solutions.
+
+Embedded Programming Intern | C.V. Raman Global University | Jul 2024 - Aug 2024
+- Implemented programming tasks using Python and C, strengthening low-level programming and algorithmic thinking.
+
+KEY PROJECTS
+Heart Disease Prediction using Machine Learning
+- Developed predictive models using Logistic Regression, Random Forest, and XGBoost to assess heart disease risk.
+- Performed data preprocessing, feature selection, and hyperparameter tuning; evaluated models using accuracy metrics and visualizations.
+- Tech Stack: Python, Scikit-learn, Pandas, Matplotlib
+
+Diabetes Prediction - Retinopathy & Readmission Analysis
+- Built end-to-end ML models for healthcare datasets including data cleaning, feature engineering, and model evaluation.
+- Gained practical exposure to healthcare analytics and predictive modeling workflows.
+- Tech Stack: Python, Scikit-learn, Pandas
+
+Employee Management System (EMS) - Full Stack with AI Chatbot
+- Built a full-stack application with FastAPI, React, and MySQL featuring JWT authentication and role-based access control.
+- Implemented AI-powered chatbot support module alongside attendance tracking, payroll, and leave management features.
+- Designed RESTful APIs with efficient database schema and seamless frontend-backend integration.
+- Tech Stack: Python, FastAPI, React, MySQL
+
+EDUCATION
+B.Tech - Computer Science (AI & ML) | C.V. Raman Global University, Bhubaneswar | 2022 - 2026 | CGPA: 7.79
+Class X (CBSE) | Young Phoenix Public | 2018 - 2019 | 66%
+Class XII (CBSE) | Bridgewell Global School | 2021 - 2022 | 57.40%
+
+ADDITIONAL INFORMATION
+Interests: Exploring AI & Gen AI tools, Video Editing & Content Creation, Social Media SEO Strategy, Fitness
+Location Preference: Open to relocate to Noida (Onsite)
