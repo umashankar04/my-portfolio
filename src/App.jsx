@@ -393,31 +393,13 @@ function App() {
                 {card.label}
               </div>
             ) : (
-              <motion.div
+              <div
                 key={card.label}
                 aria-hidden="true"
                 className={`antigravity-chip absolute z-20 border-white/12 bg-white/8 text-slate-50 ${card.className}`}
-                animate={
-                  prefersReducedMotion
-                    ? undefined
-                    : {
-                        y: [0, -14, 0],
-                        rotate: index % 2 === 0 ? [-2, 2, -2] : [2, -2, 2],
-                      }
-                }
-                transition={
-                  prefersReducedMotion
-                    ? undefined
-                    : {
-                        duration: card.duration,
-                        delay: card.delay,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                      }
-                }
               >
                 {card.label}
-              </motion.div>
+              </div>
             ),
           )}
           <div className="absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-cyan-400/5 blur-3xl pointer-events-none" />
