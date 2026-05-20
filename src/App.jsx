@@ -184,6 +184,21 @@ const floatingCards = [
   },
 ];
 
+const heroRings = [
+  {
+    className:
+      "left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2",
+    duration: 24,
+    delay: 0,
+  },
+  {
+    className:
+      "left-1/2 top-1/2 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2",
+    duration: 18,
+    delay: 1.2,
+  },
+];
+
 function App() {
   const prefersReducedMotion = useReducedMotion();
   const [theme, setTheme] = useState(() => {
@@ -263,34 +278,38 @@ function App() {
       </header>
 
       <main className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <motion.section
+        <section
           id="hero"
-          initial={{ opacity: 0, y: 32 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            boxShadow: prefersReducedMotion
-              ? undefined
-              : [
-                  "0 24px 80px -48px rgb(11 95 255 / 0.18)",
-                  "0 28px 96px -44px rgb(20 184 166 / 0.24)",
-                  "0 24px 80px -48px rgb(11 95 255 / 0.18)",
-                ],
-          }}
-          transition={
-            prefersReducedMotion
-              ? { duration: 0.35 }
-              : {
-                  duration: 8,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                }
-          }
           className="surface-card ring-fancy antigravity-shell relative overflow-hidden rounded-3xl px-6 py-14 sm:px-10 lg:px-14"
         >
+          <div className="hero-scanner absolute inset-0 z-0 pointer-events-none" />
           <div className="antigravity-grid absolute inset-0 z-0 pointer-events-none" />
           <div className="antigravity-vignette absolute inset-0 z-0 pointer-events-none" />
+          {heroRings.map((ring) => (
+            <motion.div
+              key={ring.className}
+              aria-hidden="true"
+              className={`hero-ring absolute z-0 rounded-full ${ring.className}`}
+              animate={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      scale: [1, 1.05, 1],
+                      opacity: [0.3, 0.45, 0.3],
+                    }
+              }
+              transition={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      duration: ring.duration,
+                      delay: ring.delay,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                    }
+              }
+            />
+          ))}
           {heroOrbits.map((orb, index) => (
             <motion.div
               key={orb.className}
@@ -317,47 +336,57 @@ function App() {
               }
             />
           ))}
-          {floatingCards.map((card, index) => (
-            <motion.div
-              key={card.label}
-              aria-hidden="true"
-              className={`antigravity-chip absolute z-0 ${card.className}`}
-              animate={
-                prefersReducedMotion
-                  ? undefined
-                  : {
-                      y: [0, -14, 0],
-                      rotate: index % 2 === 0 ? [-2, 2, -2] : [2, -2, 2],
-                    }
-              }
-              transition={
-                prefersReducedMotion
-                  ? undefined
-                  : {
-                      duration: card.duration,
-                      delay: card.delay,
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                    }
-              }
-            >
-              {card.label}
-            </motion.div>
-          ))}
-          <div className="absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-cyan-400/6 blur-3xl pointer-events-none" />
-          <div className="absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-blue-500/6 blur-3xl pointer-events-none" />
+          {floatingCards.map((card, index) =>
+            card.label === "AI & ML" ? (
+              <div
+                key={card.label}
+                aria-hidden="true"
+                className={`antigravity-chip absolute z-20 border-cyan-300/50 bg-cyan-400/20 text-cyan-50 shadow-[0_20px_48px_-28px_rgba(34,211,238,0.85)] ${card.className}`}
+              >
+                {card.label}
+              </div>
+            ) : (
+              <motion.div
+                key={card.label}
+                aria-hidden="true"
+                className={`antigravity-chip absolute z-0 ${card.className}`}
+                animate={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        y: [0, -14, 0],
+                        rotate: index % 2 === 0 ? [-2, 2, -2] : [2, -2, 2],
+                      }
+                }
+                transition={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        duration: card.duration,
+                        delay: card.delay,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                      }
+                }
+              >
+                {card.label}
+              </motion.div>
+            ),
+          )}
+          <div className="absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-cyan-400/5 blur-3xl pointer-events-none" />
+          <div className="absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
           <div className="antigravity-float absolute inset-x-0 bottom-0 z-0 h-16 pointer-events-none" />
-          <div className="relative z-10">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300">
+          <div className="hero-panel relative z-10 max-w-4xl rounded-[2rem] border border-white/15 bg-slate-950/72 p-6 shadow-[0_24px_80px_-46px_rgba(11,95,255,0.55)] backdrop-blur-2xl sm:p-8 lg:p-10">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-cyan-300">
               Computer Science (AI & ML) Graduate
             </p>
-            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
+            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
               Umashankar Pradhan
             </h1>
-            <p className="mt-4 text-lg font-semibold text-blue-700 dark:text-blue-300">
+            <p className="mt-4 text-lg font-semibold text-cyan-300">
               Analyst - Gen AI / Python | AI & ML Engineer
             </p>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-300">
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
               Building intelligent systems using AI, Machine Learning, and
               Generative AI.
             </p>
@@ -365,27 +394,27 @@ function App() {
               <button
                 type="button"
                 onClick={() => scrollTo("projects")}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-[0_18px_36px_-20px_rgba(37,99,235,0.9)]"
               >
                 View Projects <FaArrowRight />
               </button>
               <a
                 href="/Umashankar_Pradhan_Resume.txt"
                 download
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/60 hover:bg-white/12 hover:shadow-[0_18px_36px_-24px_rgba(20,184,166,0.8)]"
               >
                 Download Resume <FaDownload />
               </a>
               <button
                 type="button"
                 onClick={() => scrollTo("contact")}
-                className="inline-flex items-center gap-2 rounded-full border border-cyan-600/40 bg-cyan-50 px-5 py-3 text-sm font-semibold text-cyan-900 transition hover:bg-cyan-100 dark:border-cyan-400/40 dark:bg-cyan-950/35 dark:text-cyan-100"
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-400/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-400/16 hover:shadow-[0_18px_36px_-24px_rgba(34,211,238,0.75)]"
               >
                 Contact Me
               </button>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         <motion.section id="about" {...sectionMotion} className="pt-16">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
@@ -412,8 +441,10 @@ function App() {
             {education.map((item) => (
               <motion.article
                 key={item.degree}
-                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                whileHover={
+                  prefersReducedMotion ? undefined : { y: -8, scale: 1.01 }
+                }
+                transition={{ duration: 0.24, ease: "easeOut" }}
                 className="surface-card antigravity-card rounded-2xl p-6"
               >
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
@@ -443,8 +474,10 @@ function App() {
             {skillGroups.map((group) => (
               <motion.article
                 key={group.title}
-                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                whileHover={
+                  prefersReducedMotion ? undefined : { y: -8, scale: 1.01 }
+                }
+                transition={{ duration: 0.24, ease: "easeOut" }}
                 className="surface-card antigravity-card rounded-2xl p-5"
               >
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
@@ -499,10 +532,14 @@ function App() {
                 whileHover={
                   prefersReducedMotion
                     ? undefined
-                    : { y: -10, rotateX: 1, rotateY: -1 }
+                    : { y: -10, rotateX: 2, rotateY: -2, scale: 1.02 }
                 }
                 viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.45, delay: index * 0.1 }}
+                transition={{
+                  duration: 0.48,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
                 className="surface-card antigravity-card rounded-2xl p-5"
               >
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
@@ -542,8 +579,10 @@ function App() {
             {experiences.map((exp) => (
               <motion.article
                 key={exp.role}
-                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                whileHover={
+                  prefersReducedMotion ? undefined : { y: -8, scale: 1.01 }
+                }
+                transition={{ duration: 0.24, ease: "easeOut" }}
                 className="surface-card antigravity-card rounded-2xl p-6"
               >
                 <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
