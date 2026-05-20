@@ -348,42 +348,42 @@ function App() {
           <div className="absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-blue-500/6 blur-3xl pointer-events-none" />
           <div className="antigravity-float absolute inset-x-0 bottom-0 z-0 h-16 pointer-events-none" />
           <div className="relative z-10">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300">
-            Computer Science (AI & ML) Graduate
-          </p>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
-            Umashankar Pradhan
-          </h1>
-          <p className="mt-4 text-lg font-semibold text-blue-700 dark:text-blue-300">
-            Analyst - Gen AI / Python | AI & ML Engineer
-          </p>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-300">
-            Building intelligent systems using AI, Machine Learning, and
-            Generative AI.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={() => scrollTo("projects")}
-              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
-            >
-              View Projects <FaArrowRight />
-            </button>
-            <a
-              href="/Umashankar_Pradhan_Resume.txt"
-              download
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
-            >
-              Download Resume <FaDownload />
-            </a>
-            <button
-              type="button"
-              onClick={() => scrollTo("contact")}
-              className="inline-flex items-center gap-2 rounded-full border border-cyan-600/40 bg-cyan-50 px-5 py-3 text-sm font-semibold text-cyan-900 transition hover:bg-cyan-100 dark:border-cyan-400/40 dark:bg-cyan-950/35 dark:text-cyan-100"
-            >
-              Contact Me
-            </button>
-          </div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300">
+              Computer Science (AI & ML) Graduate
+            </p>
+            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
+              Umashankar Pradhan
+            </h1>
+            <p className="mt-4 text-lg font-semibold text-blue-700 dark:text-blue-300">
+              Analyst - Gen AI / Python | AI & ML Engineer
+            </p>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-700 sm:text-lg dark:text-slate-300">
+              Building intelligent systems using AI, Machine Learning, and
+              Generative AI.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => scrollTo("projects")}
+                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+              >
+                View Projects <FaArrowRight />
+              </button>
+              <a
+                href="/Umashankar_Pradhan_Resume.txt"
+                download
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+              >
+                Download Resume <FaDownload />
+              </a>
+              <button
+                type="button"
+                onClick={() => scrollTo("contact")}
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-600/40 bg-cyan-50 px-5 py-3 text-sm font-semibold text-cyan-900 transition hover:bg-cyan-100 dark:border-cyan-400/40 dark:bg-cyan-950/35 dark:text-cyan-100"
+              >
+                Contact Me
+              </button>
+            </div>
           </div>
         </motion.section>
 
@@ -496,7 +496,11 @@ function App() {
                 key={project.title}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={prefersReducedMotion ? undefined : { y: -10, rotateX: 1, rotateY: -1 }}
+                whileHover={
+                  prefersReducedMotion
+                    ? undefined
+                    : { y: -10, rotateX: 1, rotateY: -1 }
+                }
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.45, delay: index * 0.1 }}
                 className="surface-card antigravity-card rounded-2xl p-5"
